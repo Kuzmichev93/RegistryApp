@@ -83,10 +83,10 @@ public class UserService {
             if(reg.checkValue("[A-ZА-Я]{1}[a-zа-я]*",user.getName()) ||
                     reg.checkValue("(?:[A-ZА-Я]{1}[a-zа-я]*-[A-ZА-Я]{1}[a-zа-я]+|[A-ZА-Я]{1}[a-zа-я]*)",user.getSurname())||
                 reg.checkValue("[A-ZА-Я]{1}[a-zа-я]*",user.getPatronomic()) ||
-                reg.checkValue("№[0-9]+[a-zA-Zа-я-А-Я]+",user.getDepartment())
+                reg.checkValue("№[0-9]+[a-zA-Zа-яА-Я]+",user.getDepartment())
               ){
-                throw new СustomException(String.format("Поле %s,patronomic,surname и department не должны быть пустыми",user.getName()), HttpStatus.BAD_REQUEST);
-                //throw new СustomException("Поле name или patronomic или surname или department содержит невалидные данные", HttpStatus.BAD_REQUEST);
+
+                throw new СustomException("Поле name или patronomic или surname или department содержит невалидные данные", HttpStatus.BAD_REQUEST);
             }
 
             if (departmentRepository.existsByDeptname(user.getDepartment())) {
@@ -144,7 +144,7 @@ public class UserService {
             if(reg.checkValue("[A-ZА-Я]{1}[a-zа-я]*",user.get(i).getName()) ||
                     reg.checkValue("(?:[A-ZА-Я]{1}[a-zа-я]*-[A-ZА-Я]{1}[a-zа-я]+|[A-ZА-Я]{1}[a-zа-я]*)",user.get(i).getSurname())||
                     reg.checkValue("[A-ZА-Я]{1}[a-zа-я]*",user.get(i).getPatronomic()) ||
-                    reg.checkValue("№[0-9]+[a-zA-Zа-я-А-Я]+",user.get(i).getDepartment())
+                    reg.checkValue("№[0-9]+[a-zA-Zа-яА-Я]+",user.get(i).getDepartment())
             ){
                 throw new СustomException(String.format("Объект с индексом %d содержит не валидные данные",i+1), HttpStatus.BAD_REQUEST);
             }
@@ -153,7 +153,7 @@ public class UserService {
             }
 
         }
-        //Создание порядкого номера
+        //Создание порядкового номера
         for(int k = 0;k<user.size();k++){
             Optional<Department> data = departmentRepository.findByDeptname(user.get(k).getDepartment());
             HashMap<String, HashMap> numberAndPrefix = numberUser.getNumberAndPrefix(data);
@@ -233,7 +233,7 @@ public class UserService {
         if(reg.checkValue("[A-ZА-Я]{1}[a-zа-я]*",user.getName()) ||
                 reg.checkValue("(?:[A-ZА-Я]{1}[a-zа-я]*-[A-ZА-Я]{1}[a-zа-я]+|[A-ZА-Я]{1}[a-zа-я]*)",user.getSurname())||
                 reg.checkValue("[A-ZА-Я]{1}[a-zа-я]*",user.getPatronomic()) ||
-                reg.checkValue("№?[0-9]+[a-zA-Zа-я-А-Я]+",user.getDepartment())
+                reg.checkValue("№[0-9]+[a-zA-Zа-яА-Я]+",user.getDepartment())
         ){
             throw new СustomException("Поле name или patronomic или surname или department содержат невалидные данные", HttpStatus.BAD_REQUEST);
         }

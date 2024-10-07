@@ -57,7 +57,7 @@ public class DepartmentService {
         if(department.getDeptname() == null || department.getPrefix() == null){
             throw new СustomException("Поле deptname и prefix должны быть в запросе", HttpStatus.BAD_REQUEST);
         }
-        if(reg.checkValue("№?[0-9]+[a-zA-Zа-я-А-Я]+",department.getDeptname())
+        if(reg.checkValue("№[0-9]+[a-zA-Zа-яА-Я]+",department.getDeptname())
                 || reg.checkValue("[a-zA-Zа-я-А-Я]+",department.getPrefix())){
             throw new СustomException("Объект содержит невалидные данные", HttpStatus.BAD_REQUEST);
         }
@@ -85,8 +85,8 @@ public class DepartmentService {
             if(department.get(i).getDeptname() == null || department.get(i).getPrefix() == null){
                 throw new СustomException(String.format("Объект с индексом %d должен содержать поля deptname и prefix",i+1), HttpStatus.BAD_REQUEST);
             }
-            if(reg.checkValue("№?[0-9]+[a-zA-Zа-я-А-Я]+",department.get(i).getDeptname())
-                    || reg.checkValue("[a-zA-Zа-я-А-Я]+",department.get(i).getPrefix())){
+            if(reg.checkValue("№[0-9]+[a-zA-Zа-яА-Я]+",department.get(i).getDeptname())
+                    || reg.checkValue("[a-zA-Zа-яА-Я]+",department.get(i).getPrefix())){
                 throw new СustomException(String.format("Объект с индексом %d содержит невалидные значения",i+1), HttpStatus.BAD_REQUEST);
             }
 
@@ -111,13 +111,14 @@ public class DepartmentService {
         if(department.getDeptname() == null){
             throw new СustomException("Поле deptname должно быть в запросе", HttpStatus.BAD_REQUEST);
         }
+        if(reg.checkValue("№[0-9]+[a-zA-Zа-яА-Я]+",department.getDeptname())){
+            throw new СustomException("Объект содержит невалидные данные", HttpStatus.BAD_REQUEST);
+        }
         if(!departmentRepository.existsByDeptname(department.getDeptname())){
             throw new СustomException("Департамент не существует в бд", HttpStatus.BAD_REQUEST);
         }
 
-        if(reg.checkValue("№?[0-9]+[a-zA-Zа-я-А-Я]+",department.getDeptname())){
-            throw new СustomException("Объект содержит невалидные данные", HttpStatus.BAD_REQUEST);
-        }
+
         try {
             Optional<Department> data = departmentRepository.findByDeptname(department.getDeptname());
             JSONObject jsonObject = new JSONObject();
@@ -140,7 +141,7 @@ public class DepartmentService {
         if(department.getDeptname() == null){
             throw new СustomException("Поле deptname должно быть в запросе", HttpStatus.BAD_REQUEST);
         }
-        if(reg.checkValue("№?[0-9]+[a-zA-Zа-я-А-Я]+",department.getDeptname())){
+        if(reg.checkValue("№[0-9]+[a-zA-Zа-яА-Я]+",department.getDeptname())){
             throw new СustomException("Объект содержит невалидные данные", HttpStatus.BAD_REQUEST);
         }
         JSONObject jsonObject = new JSONObject();

@@ -3,6 +3,7 @@ package app.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
@@ -15,7 +16,7 @@ public class ApplicationConfig {
     public HandlerExceptionResolver resolver;
 
 
-    //@Bean
+    @Bean
     public FilterRegistrationBean someFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new CustomFilter(resolver));
