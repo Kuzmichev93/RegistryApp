@@ -146,10 +146,10 @@ public class UserService {
                     reg.checkValue("[A-ZА-Я]{1}[a-zа-я]*",user.get(i).getPatronomic()) ||
                     reg.checkValue("№[0-9]+[a-zA-Zа-яА-Я]+",user.get(i).getDepartment())
             ){
-                throw new СustomException(String.format("Объект с индексом %d содержит не валидные данные",i+1), HttpStatus.BAD_REQUEST);
+                throw new СustomException(String.format("Объект с индексом %d содержит невалидные данные",i+1), HttpStatus.BAD_REQUEST);
             }
             if (!departmentRepository.existsByDeptname(user.get(i).getDepartment())) {
-                throw new СustomException(String.format("В поле departament введен не сущестующие значение. Индекс в списке %d",i+1), HttpStatus.BAD_REQUEST);
+                throw new СustomException(String.format("В поле departament введен не существующий ид. Индекс в списке %d",i+1), HttpStatus.BAD_REQUEST);
             }
 
         }
