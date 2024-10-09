@@ -1,0 +1,34 @@
+version: '3.1'
+
+volumes:
+  pgdemo:
+
+services:
+  db:
+    image: postgres:17
+    environment:
+       POSTGRES_USER: "postgres"
+       POSTGRES_PASSWORD: "postgres"
+       POSTGRES_DB: "postgres"
+    volumes:
+      - ./pgdemo:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  redis:
+    image: redis
+    volumes:
+      - ./pgdemo:/var/lib/redis/data
+    ports:
+      - 6379:6379
+
+  app:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+      - redis
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+      JAVA_OPTS: "-Xmx512m"

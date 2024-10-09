@@ -20,7 +20,6 @@ public class ApplicationConfig {
     public FilterRegistrationBean someFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new CustomFilter(resolver));
-        registration.addUrlPatterns("/api/*");
         registration.setName("customFilter");
         registration.setOrder(1);
         return registration;

@@ -58,7 +58,7 @@ public class DepartmentService {
             throw new СustomException("Поле deptname и prefix должны быть в запросе", HttpStatus.BAD_REQUEST);
         }
         if(reg.checkValue("№[0-9]+[a-zA-Zа-яА-Я]+",department.getDeptname())
-                || reg.checkValue("[a-zA-Zа-я-А-Я]+",department.getPrefix())){
+                || reg.checkValue("[a-zA-Zа-яА-Я]+",department.getPrefix())){
             throw new СustomException("Объект содержит невалидные данные", HttpStatus.BAD_REQUEST);
         }
         try {
