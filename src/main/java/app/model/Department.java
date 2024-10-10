@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "departments",schema = "registry")
+@Table(name = "departments",schema = "public")
 @ToString
 public class Department implements Serializable {
     @Id

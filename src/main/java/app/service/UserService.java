@@ -100,7 +100,7 @@ public class UserService {
                 HashMap<String, HashMap> numberAndPrefix = numberUser.getNumberAndPrefix(data);
                 Integer number = (Integer) numberAndPrefix.get(data.get().getDeptname()).get("number");//Порядковый номер пользователя
                 String prefix = (String) numberAndPrefix.get(data.get().getDeptname()).get("prefix");//Префикс порядкого номера
-                user.setNumber(number.toString() + prefix);//Объединяем порядковый номер и префикс
+                user.setNumber(prefix + number.toString());//Объединяем порядковый номер и префикс
                 try{
                     userRepository.save(user);//Сохраняем сущность user в бд
                 }
@@ -159,7 +159,7 @@ public class UserService {
             HashMap<String, HashMap> numberAndPrefix = numberUser.getNumberAndPrefix(data);
             Integer number = (Integer) numberAndPrefix.get(data.get().getDeptname()).get("number");//Порядковый номер пользователя
             String prefix = (String) numberAndPrefix.get(data.get().getDeptname()).get("prefix");//Префикс порядкого номера
-            user.get(k).setNumber(number.toString() + prefix);
+            user.get(k).setNumber(prefix + number.toString());
 
             number += 1;
             numberAndPrefix.get(data.get().getDeptname()).put("number", number);
