@@ -9,7 +9,8 @@ spring:
     platform: postgres
     url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
-    password: 12345
+    password: postgres
     driverClassName: org.postgresql.Driver
+
 
 
