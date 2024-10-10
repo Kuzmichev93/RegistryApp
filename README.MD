@@ -17,4 +17,4 @@
 <div>api/department/createall создание списка департаментов</div>
 <div>api/department/delete удаление департамента</div>
 <p>
-<div>Образ docker pull dmitry735/registryapp-app:latest</div>
+<div>Образ: docker pull dmitry735/registryapp-app:latest</div>
