@@ -149,7 +149,7 @@ public class UserService {
                 throw new СustomException(String.format("Объект с индексом %d содержит невалидные данные",i+1), HttpStatus.BAD_REQUEST);
             }
             if (!departmentRepository.existsByDeptname(user.get(i).getDepartment())) {
-                throw new СustomException(String.format("В поле departament введен не существующий ид. Индекс в списке %d",i+1), HttpStatus.BAD_REQUEST);
+                throw new СustomException(String.format("В поле departament введен несуществующий ид. Индекс в списке %d",i+1), HttpStatus.BAD_REQUEST);
             }
 
         }
